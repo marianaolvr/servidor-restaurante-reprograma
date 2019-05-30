@@ -11,8 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "http": "0.0.0",
-    "utf8": "^3.0.0"
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
