@@ -28,5 +28,13 @@ const comidas = {
 const getAll = () => {
     return comidas
 }
-module.exports = { getAll }
+
+const add = (comida) => {
+    comidas.pratosFavoritos.push(comida) //push para cadastrar um novo objeto na array
+}
+
+module.exports = { 
+    getAll,
+    add 
+}
 
