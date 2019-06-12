@@ -1,3 +1,5 @@
+// limitar os campos que aceitamos no nosso documento
+
 const mongoose = require ("mongoose");
 //cada schema equivale a uma collection
 const Schema = mongoose.Schema;
