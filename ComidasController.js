@@ -19,13 +19,12 @@ const getById = (id) => {
         return comidasModel.findById(id) 
       }
 
-const add = async (comida) => {  // TODO: usar o mongoose para inserir uma nova comida
-         const novaComida = new comidasModel(comida)
-    return    novaComida.save()
-}
+const add = (comida) => {  // TODO: usar o mongoose para inserir uma nova comida
+    const novaComida = new comidasModel(comida)
+    return novaComida.save()
+  }
 
-
-const remove = async (id) => {
+const remove = (id) => {
     // comidas.pratosFavoritos = getAll().filter((comida) =>{
     //     return comida.id !== id
     // })
@@ -37,6 +36,9 @@ const update = (id, comida) => {
           id,
           { $set: comida },
           { new: true }, // RETORNAR A COMIDA JA ATUALIZADA NO CALLBACK
+          function (_error, comida) { // é o nosso callback
+            return comida
+          }
         )
       }
 
@@ -69,9 +71,9 @@ const update = (id, comida) => {
 
 
 module.exports = {
-    getAll,
-    getById,
-    add,
-    remove,
-    update
+getAll,
+  getById,
+  add,
+  remove,
+  update
 }

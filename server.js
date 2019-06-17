@@ -37,11 +37,21 @@ server.get("/comidas/:id", (request, response) => { //get com express, sem ifs
 
 
 server.post('/comidas', (request, response) => {
-  response.status(200).send(controller.add(request.body))
+  controller.add(request.body)
+    .then(comida => {
+      const _id = comida._id
+      response.send(_id)
+    })
+    .catch(error => {
+      if(error.name === "ValidationError"){
+        response.sendStatus(400) // bad request
+      } else {
+        response.sendStatus(500)
+      }
+    })
 })
 
-
-server.patch('/comidas/:id', async (request, response) => {
+server.patch('/comidas/:id', (request, response) => {
   const id = request.params.id
   controller.update(id, request.body)
     .then(comida => {
@@ -59,12 +69,24 @@ server.patch('/comidas/:id', async (request, response) => {
 
 
 
-
-server.delete('/comidas/:id', async (request, response) => {
+server.delete('/comidas/:id', (request, response) => {
   controller.remove(request.params.id)
-  // response.sendStatus(20)
-  .then(comida => response.sendStatus(204))
+    .then(comida => {
+      if(comida === null || comida === undefined){ // if(!comida) 
+        response.sendStatus(404) // not found
+      } else {
+        response.sendStatus(204)
+      }
+    })
+    .catch(error => {
+      if(error.name === "CastError"){
+        response.sendStatus(400) //bad request
+      } else {
+        response.sendStatus(500)
+      } 
+    })
 })
+
 
 
 // server.put('/comidas/:id', (request, response) =>{
