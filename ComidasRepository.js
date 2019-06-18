@@ -32,7 +32,7 @@
 // TODO: conectando o banco com o mongoose
 const mongoose = require('mongoose');
 // string de conexão: mongodb://dominio:porta/nome_database
-const MONGO_URL = 'mongodb://localhost:27   rograma' //numeração padrão do mongo
+const MONGO_URL = 'mongodb://localhost:27017/rerograma' //numeração padrão do mongo
 
 function connect (){
     //TODO: conectar no nosso mongo usando a MONGO_URL
